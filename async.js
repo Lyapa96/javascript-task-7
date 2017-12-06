@@ -25,9 +25,12 @@ function runParallel(jobs, parallelNum, timeout = 1000) {
 
         function runNextJob() {
             currentJobIndex++;
+            if (currentJobIndex >= jobs.length) {
+                if (jobsResults.length === jobs.length) {
+                    resolve(jobsResults);
 
-            if (jobsResults.length === jobs.length) {
-                resolve(jobsResults);
+                    return;
+                }
 
                 return;
             }
